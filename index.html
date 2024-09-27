@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Cadeau - Anniversaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticket {
+            position: relative;
+            background-color: #fff;
+            border: 2px dashed #888;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.5);
+            animation: fadeInZoom 1s ease forwards, float 3s ease-in-out infinite;
+            background-image: linear-gradient(45deg, #f3f3f3 25%, transparent 25%, transparent 50%, #f3f3f3 50%, #f3f3f3 75%, transparent 75%, transparent);
+            background-size: 40px 40px;
+            margin-bottom: 20px;
+        }
+
+        .ticket h1 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .ticket p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .amount {
+            font-size: 36px;
+            color: #4CAF50;
+            margin: 20px 0;
+            border: 2px solid #4CAF50;
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #e8f5e9;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            font-size: 14px;
+            color: #888;
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+            margin-top: 20px;
+        }
+
+        .barcode {
+            width: 100px;
+            height: 30px;
+            background: repeating-linear-gradient(
+                90deg,
+                #000,
+                #000 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            margin: 10px auto;
+        }
+
+        .name-display {
+            font-size: 22px;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Animation shiny effect */
+        .shiny {
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
+            transform: skewX(-30deg);
+            animation: shiny 2s infinite;
+        }
+
+        @keyframes fadeInZoom {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.02);
+            }
+        }
+
+        @keyframes shiny {
+            0% {
+                left: -150%;
+            }
+            100% {
+                left: 150%;
+            }
+        }
+
+        /* Fireworks animation */
+        .firework {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            animation: explode 1.5s ease-out infinite;
+        }
+
+        /* Colors and sizes for fireworks */
+        .firework.one {
+            background-color: red;
+            width: 10px;
+            height: 10px;
+            top: 20%;
+            left: 30%;
+        }
+
+        .firework.two {
+            background-color: yellow;
+            width: 15px;
+            height: 15px;
+            top: 50%;
+            left: 70%;
+        }
+
+        .firework.three {
+            background-color: blue;
+            width: 20px;
+            height: 20px;
+            top: 10%;
+            left: 50%;
+        }
+
+        .firework.four {
+            background-color: green;
+            width: 12px;
+            height: 12px;
+            top: 40%;
+            left: 20%;
+        }
+
+        .firework.five {
+            background-color: purple;
+            width: 25px;
+            height: 25px;
+            top: 30%;
+            left: 80%;
+        }
+
+        .firework.six {
+            background-color: orange;
+            width: 18px;
+            height: 18px;
+            top: 60%;
+            left: 40%;
+        }
+
+        .firework.seven {
+            background-color: pink;
+            width: 22px;
+            height: 22px;
+            top: 70%;
+            left: 60%;
+        }
+
+        @keyframes explode {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(4);
+            }
+        }
+
+        /* Style for the image that bounces around */
+        #bouncing-head {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <h1>Ticket Cadeau d'Anniversaire</h1>
+        <div class="name-display">Pour Thomas</div>
+        <p>Ce ticket a une valeur de</p>
+        <div class="amount">234 €</div>
+        <p class="message">Utilisable pour l'achat d'une tablette ou d'un PC</p>
+        <div class="barcode"></div>
+        <div class="footer">Offert avec amour, valable jusqu'au 31/02/2079</div>
+        <div class="shiny"></div>
+    </div>
+
+    <!-- Image of the head bouncing around -->
+    <img src="Sujet.png" id="bouncing-head" alt="Tête de l'ami">
+
+    <!-- Multiple Fireworks -->
+    <div class="firework one"></div>
+    <div class="firework two"></div>
+    <div class="firework three"></div>
+    <div class="firework four"></div>
+    <div class="firework five"></div>
+    <div class="firework six"></div>
+    <div class="firework seven"></div>
+
+    <script>
+        // Variables for bouncing head
+        const head = document.getElementById('bouncing-head');
+        let x = 100, y = 100;
+        let vx = 2, vy = 2;
+
+        function moveHead() {
+            const headWidth = head.offsetWidth;
+            const headHeight = head.offsetHeight;
+            
+            x += vx;
+            y += vy;
+
+            // Check for collisions with the edges of the window
+            if (x + headWidth > window.innerWidth || x < 0) {
+                vx = -vx; // Reverse direction on X-axis
+            }
+            if (y + headHeight > window.innerHeight || y < 0) {
+                vy = -vy; // Reverse direction on Y-axis
+            }
+
+            // Apply the new position
+            head.style.transform = `translate(${x}px, ${y}px)`;
+            requestAnimationFrame(moveHead);
+        }
+
+        // Start the animation
+        window.onload = function() {
+            moveHead();
+
+            // Trigger fireworks
+            const fireworks = document.querySelectorAll('.firework');
+            fireworks.forEach(firework => {
+                setTimeout(() => {
+                    firework.style.animation = 'explode 1.5s ease-out infinite';
+                }, Math.random() * 1000);
+            });
+        }
+    </script>
+</body>
+</html>
